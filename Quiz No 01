@@ -1,0 +1,105 @@
+#include <iostream>
+using namespace std;
+
+class Material {
+protected:
+    string name;
+    string writer;
+    int code;
+
+public:
+    Material(string n, string w, int c) {
+        name = n;
+        writer = w;
+        code = c;
+    }
+
+    void showInfo() {
+        cout << "Name: " << name << endl;
+        cout << "Writer: " << writer << endl;
+        cout << "Code: " << code << endl;
+    }
+};
+
+class PrintedBook : public Material {
+private:
+    int totalPages;
+    string category;
+
+public:
+    PrintedBook(string n, string w, int c, int tp, string cat)
+        : Material(n, w, c) {
+        totalPages = tp;
+        category = cat;
+    }
+
+    void showDetails() {
+        showInfo();
+        cout << "Total Pages: " << totalPages << endl;
+        cout << "Category: " << category << endl;
+        cout << "=====================" << endl;
+    }
+};
+
+class Periodical : public Material {
+private:
+    int edition;
+    string releaseMonth;
+
+public:
+    Periodical(string n, string w, int c, int e, string rm)
+        : Material(n, w, c) {
+        edition = e;
+        releaseMonth = rm;
+    }
+
+    void showDetails() {
+        showInfo();
+        cout << "Edition: " << edition << endl;
+        cout << "Release Month: " << releaseMonth << endl;
+        cout << "=====================" << endl;
+    }
+};
+
+class SoundBook : public Material {
+private:
+    int length;
+    string voiceArtist;
+
+public:
+    SoundBook(string n, string w, int c, int l, string va)
+        : Material(n, w, c) {
+        length = l;
+        voiceArtist = va;
+    }
+
+    void showDetails() {
+        showInfo();
+        cout << "Length: " << length << " mins" << endl;
+        cout << "Voice Artist: " << voiceArtist << endl;
+        cout << "=====================" << endl;
+    }
+};
+
+int main() {
+
+    PrintedBook pb1("Programming Fundamentals", "Ahmed", 101, 250, "Academic");
+    PrintedBook pb2("Adventure Tales", "Hina", 102, 180, "Novel");
+
+    Periodical pr1("Science World", "Editorial Team", 201, 7, "February");
+    Periodical pr2("Fitness Today", "Health Group", 202, 3, "April");
+
+    SoundBook sb1("Mastering C++", "James", 301, 95, "Michael");
+    SoundBook sb2("Short Stories Audio", "Emily", 302, 60, "Sophia");
+
+    pb1.showDetails();
+    pb2.showDetails();
+
+    pr1.showDetails();
+    pr2.showDetails();
+
+    sb1.showDetails();
+    sb2.showDetails();
+
+    return 0;
+}
